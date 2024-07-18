@@ -9,7 +9,7 @@ class BarangForm(forms.ModelForm):
         fields='__all__'
         widgets = {
             'kodebrg': forms.TextInput(attrs={'class': 'form-control'}),
-            'imagebrg': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+            'imagebrg': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'namabrg': forms.TextInput(attrs={'class': 'form-control'}),
             'stokbrg': forms.NumberInput(attrs={'class': 'form-control'}),
             'hargabrg': forms.NumberInput(attrs={'class': 'form-control'}),

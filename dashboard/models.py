@@ -13,14 +13,16 @@ class Barang(models.Model):
     namabrg=models.CharField(max_length=50)
     stokbrg=models.IntegerField()
     hargabrg=models.BigIntegerField()
-    waktu_posting=models.DateTimeField(auto_now_add=True)
     jenis_id=models.ForeignKey(Jenis, on_delete=models.CASCADE,null=True)
 
-def __str__(self):
+    def __str__(self):
         return "{}. {}".format(self.kodebrg,self.namabrg)
 
 class JenisUser(models.Model):
-     jenis=models.CharField(max_length=50)
+    jenis=models.CharField(max_length=50)
+
+    def __str__(self):
+         return self.jenis
 
 class User(models.Model):
     username=models.CharField(max_length=255)

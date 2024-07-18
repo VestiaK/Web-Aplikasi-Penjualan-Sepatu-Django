@@ -45,12 +45,12 @@ def Barang_View(request):
     return render(request, 'tampil_brg.html', {'barangs': barangs})
 
 def tambah_barang(request):
-    if request.POST:
-        form = BarangForm(request.POST)
+    if request.method == 'POST':
+        form = BarangForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, "Data Berhasil Ditambahkan")
-            form = BarangForm()  # Inisialisasi form baru setelah berhasil menyimpan
+            form = BarangForm()
     else:
         form = BarangForm()
     
@@ -92,18 +92,19 @@ def User_View(request):
     return render(request, 'tampil_user.html', konteks)
 
 def tambah_user(request):
+    konteks = {}  # Inisialisasi konteks di luar blok if-else
     if request.POST:
-        form= UserForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,"Data Berhasil Ditambahkan")
-            form = UserForm()
+            messages.success(request, "Data Berhasil Ditambahkan")
+            form = UserForm()  # Inisialisasi form baru setelah berhasil menyimpan
     else:
-        form=UserForm()
-        konteks={
-            'form':form,
-        }
-    return render (request, 'tambah_barang.html', konteks)
+        form = UserForm()
+
+    konteks['form'] = form  # Memasukkan form ke dalam konteks
+
+    return render(request, 'tambah_user.html', konteks)
 
 def ubah_user(request, id_user):
     users = User.objects.get(id=id_user)

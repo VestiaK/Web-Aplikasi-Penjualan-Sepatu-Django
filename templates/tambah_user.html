@@ -4,18 +4,23 @@
 {% load static %}
 <div class="container">
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6 mx-auto">
             {% for message in messages %}
-                {% if message%}
-                    <div class="alert alert-success">{{message}}</div>
+                {% if message %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                 {% endif %}
             {% endfor %}
-            <form actions = "" method="post" >
+            <form action="" method="post" enctype="multipart/form-data" class="my-4">
                 {% csrf_token %}
-                {{form.as_p}}
+                {{ form.as_p }}
                 
-                <button type="submit" class="btn btn-primary">Tambah</button>
-                <a href="/user" class="btn btn-danger" > kembali</a>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary me-3">Tambah</button>
+                    <a href="/user" class="btn btn-danger">Kembali</a>
+                </div>
             </form>
         </div>
     </div>
