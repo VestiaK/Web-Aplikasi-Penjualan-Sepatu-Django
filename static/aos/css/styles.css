@@ -4,6 +4,9 @@ body {
     padding: 0;
     background-color: #f8f8f8;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header nav {
@@ -457,15 +460,42 @@ form {
     display: block;
     margin: 0 auto;
 }
-.dark-footer {
-    padding: 40px 0;
+.containers {
+    text-align: center;
 }
 
-.dark-footer h3{
-    font-size: 1rem;
+.gacha-containers {
+    margin-top: 20px;
 }
 
-.footer-content {
+.gacha-item {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+
+.gacha-item img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.gacha-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.gacha-button:hover {
+    background-color: #0056b3;
 }

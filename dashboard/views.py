@@ -61,21 +61,22 @@ def tambah_barang(request):
 
 
 
-def ubah_brg(request,id_barang):
+def ubah_brg(request, id_barang):
     barangs = Barang.objects.get(id=id_barang)
-    if request.POST:
-        form=BarangForm(request.POST,instance=barangs)
+    if request.method == 'POST':
+        form = BarangForm(request.POST, request.FILES, instance=barangs)
         if form.is_valid():
             form.save()
-            messages.success(request,"Data Berhasil diubah")
-            return redirect('ubah_brg', id_barang=id_barang)
+            messages.success(request, "Data Barang berhasil diubah.")
+            form = BarangForm()
+
     else:
-        form=BarangForm(instance=barangs)
-        konteks = {
-            'form':form,
-            'barangs' :barangs
-        }
-    return render(request, 'ubah_brg.html',konteks )
+        form = BarangForm(instance=barangs)
+    
+    konteks = {
+        'form': form,
+    }
+    return render(request, 'ubah_brg.html', konteks)
 
 def hapus_brg(request, id_barang):
     print("id.barang")
@@ -113,14 +114,14 @@ def ubah_user(request, id_user):
         if form.is_valid():
             form.save()
             messages.success(request,"Data Berhasil diubah")
-            return redirect('ubah_brg', id_user=id_user)
+            return redirect('ubah_user', id_user=id_user)
     else:
         form=UserForm(instance=users)
         konteks = {
             'form':form,
-            'barangs' :users
+            'users' :users
         }
-    return render(request, 'ubah_brg.html',konteks )
+    return render(request, 'ubah_user.html',konteks )
 
 def hapus_user(request, id_user):
     users= User.objects.filter(id=id_user)

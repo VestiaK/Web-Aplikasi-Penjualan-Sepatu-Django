@@ -9,4 +9,30 @@
         <a href="https://www.instagram.com"><img src="{% static 'instagram-icon.png' %}" alt="Instagram"></a>
         <a href="https://wa.me/628123456789"><img src="{% static 'whatsapp-icon.png' %}" alt="WhatsApp"></a>
     </div>
+    <div class="containers">
+        <h1>Gacha Roll Simulator</h1>
+        <div class="gacha-containers">
+            <div class="gacha-item" id="gachaItem">
+                <img src="placeholder.png" alt="Gacha Item">
+            </div>
+            <button class="gacha-button" onclick="rollGacha()">Roll Gacha</button>
+        </div>
+    </div>
+
+<script>
+    const gachaItems = [
+    {% static 'img1.webp' %},
+    {% static 'img2.webp' %},
+    {% static 'img3.webp' %},
+    {% static 'img4.webp' %},
+    {% static 'img5.webp' %}
+];
+
+function rollGacha() {
+    const randomIndex = Math.floor(Math.random() * gachaItems.length);
+    const selectedGachaItem = gachaItems[randomIndex];
+    const gachaItemElement = document.getElementById('gachaItem');
+    gachaItemElement.innerHTML = `<img src="${selectedGachaItem}" alt="Gacha Item">`;
+}
+</script>
 {% endblock %}

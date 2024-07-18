@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block isi %}
-{% load static %}
 <div class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
@@ -13,15 +12,20 @@
                     </div>
                 {% endif %}
             {% endfor %}
-            <form action="" method="post" enctype="multipart/form-data" class="my-4">
-                {% csrf_token %}
-                {{ form.as_p }}
-                
-                <div class="text-center mt-3">
-                    <button type="submit" class="btn btn-primary me-3">Tambah</button>
-                    <a href="/Vbrg" class="btn btn-danger">Kembali</a>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title text-center mb-4">Tambah Barang</h3>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-primary me-3">Tambah</button>
+                            <a href="{% url 'Vbrg' %}" class="btn btn-danger">Kembali</a>
+                        </div>
+                    </form>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
