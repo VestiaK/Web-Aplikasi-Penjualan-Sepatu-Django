@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block isi %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            {% for message in messages %}
+                {% if message%}
+                    <div class="alert alert-success">{{message}}</div>
+                {% endif %}
+            {% endfor %}
+            <form actions = "" method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+                {{form.as_p}}
+                
+                <button type="submit" class="btn btn-primary">Tambah</button>
+                <a href="/Vbrg" class="btn btn-danger" > kembali</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

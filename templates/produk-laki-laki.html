@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block isi %}
+{% load static %}
+
+    <h2 >Produk Laki-Laki</h2>
+    <div class="product-grid">
+        <div class="product-item">
+            <img src="{% static 'produk-laki-laki/produkl1.webp' %}" alt="Product 1">
+            <p>Product 1</p>
+        </div>
+        <div class="product-item">
+            <img src="{% static 'produk-laki-laki/produkl2.webp' %}" alt="Product 1">
+            <p>Product 2</ap>
+        </div>
+        <div class="product-item">
+            <img src="{% static 'produk-laki-laki/produkl3.jpeg' %}" alt="Product 1">
+            <p>Product 3</p>
+        </div>
+        <div class="product-item">
+            <img src="{% static 'produk-laki-laki/produkl4.jpg' %}" alt="Product 1">
+            <p>Product 4</p>
+        </div>
+        <div class="product-item">
+            <img src="{% static 'produk-laki-laki/produkl5.jpg' %}" alt="Product 1">
+            <p>Product 5</p>
+        </div>
+    {% endblock %}

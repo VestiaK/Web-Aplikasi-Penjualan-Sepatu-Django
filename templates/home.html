@@ -1,0 +1,83 @@
+
+{% extends 'base.html' %}
+
+{% block isi %}
+{% load static %} 
+
+    <div class="slider">
+        <img src="{% static 'img1.png' %}" alt="Product Image" class="slide">
+        <img src="{% static 'img2.png' %}" alt="Product Image" class="slide">
+    </div>
+    <div class="products">
+        <h2>Produk Laki-Laki</h2>
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="{% static 'produk-laki-laki/produkl1.webp' %}" alt="Product 1">
+                <p>Sepatu Abu Abu </p>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'produk-laki-laki/produkl2.webp' %}" alt="Product 1">
+                <p>Sepatu Biru </p>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'produk-laki-laki/produkl3.jpeg' %}" alt="Product 1">
+                <p>Sepatu Putih</p>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'produk-laki-laki/produkl4.jpg' %}" alt="Product 1">
+                <p>Sepatu Biru</p>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'produk-laki-laki/produkl5.jpg' %}" alt="Product 1">
+                <p>Sepatu Putih</p>
+            </div>
+            <!-- tambahkan 4 produk lainnya di sini -->
+        </div>
+        <h2>Produk Perempuan</h2>
+        <div class="product-grid">
+            <div class="product-item">
+                <img src="{% static 'produk-perempuan/produkp1.jpg' %}" alt="Product 1">
+                <p>Product 1</p>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'produk-perempuan/produkp2.jpg' %}" alt="Product 1">
+                <p>Product 2</p>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'produk-perempuan/produkp3.webp' %}" alt="Product 1">
+                <p>Product 3</p>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'produk-perempuan/produkp4.jpeg' %}" alt="Product 1">
+                <p>Product 4</p>
+            </div>
+            <div class="product-item">
+                <img src="{% static 'produk-perempuan/produkp5.webp' %}" alt="Product 1">
+                <p>Product 5</p>
+            </div>
+            <!-- tambahkan 4 produk lainnya di sini -->
+        </div>
+    </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+    
+        function showSlide(index) {
+            slides[currentSlide].style.display = 'none';
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].style.display = 'block';
+        }
+    
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }   
+    
+        setInterval(nextSlide, 3000); // Change slide every 3 seconds
+    
+        // Initial setup
+        showSlide(currentSlide);
+    });
+    </script>
+
+    {% endblock %}

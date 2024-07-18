@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block isi %}
+{% load static %}
+<h2 style="text-align: center; padding-top: 20px;">Daftar Barang</h2>
+<p class="text-right"><a href="/addbrg" class="btn btn-primary">Tambah Data</a></p>
+
+{% for message in messages %}
+    {% if message %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endif %}
+{% endfor %}
+
+<div class="container">
+    <div class="row">
+        {% for barang in barangs %}
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'ubah_brg' barang.id %}">{{ barang.kodebrg }}</a>
+                    </h5>
+                    <p class="card-text">Nama: {{ barang.namabrg }}</p>
+                    <p class="card-text">Stok: {{ barang.stokbrg }}</p>
+                    <p class="card-text">Harga: {{ barang.hargabrg }}</p>
+                    <p class="card-text">
+                        {% if barang.imagebrg %}
+                            <img src="{{ barang.imagebrg.url }}" class="img-fluid" width="100" height="100" alt="Gambar barang">
+                        {% else %}
+                            No Image Available
+                        {% endif %}
+                    </p>
+                    <p class="card-text">Jenis: {{ barang.jenis_id.nama }}</p>
+
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapus-{{ barang.id }}">
+                        Hapus
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="hapus-{{ barang.id }}" tabindex="-1" aria-labelledby="exampleModalLabel-{{ barang.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel-{{ barang.id }}">Yakin akan dihapus?</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Nama barang : {{ barang.namabrg }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <a href="{% url 'hapus_brg'  barang.id %}" class="btn btn-danger">Yakin</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

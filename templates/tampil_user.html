@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block isi %}
+{% load static %}
+
+<h2 style="text-align: center; padding-top: 20px;">Daftar User</h2>
+<p><a href="/addbrg" class="btn btn-primary">Tambah User</a></p>
+
+{% for message in messages %}
+    {% if message %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endif %}
+{% endfor %}
+
+<div class="container">
+    <div class="row">
+        {% for user in users %}
+        <div class="col-md-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'ubah_user' user.id %}">Nama: {{ user.username }}</a>
+                    </h5>
+                    <p class="card-text">Email: {{ user.email }}</p>
+                    <p class="card-text">Alamat: {{ user.address }}</p>
+                    <p class="card-text">Phone: {{ user.phone_number }}</p>
+                    <p class="card-text">Jenis User: {{ user.jenisUser.jenis }}</p>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapus-{{ user.id }}">
+                        Hapus
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="hapus-{{ user.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Yakin akan dihapus?</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Nama User: {{ user.username }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <a href="{% url 'hapus_user' user.id %}" class="btn btn-danger">Yakin</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block isi %} {% load static %}
+
+<h2 style="text-align: center; padding-top: 20px">Daftar Barang</h2>
+<p><a href="/addbrg" class="btn btn-primary">Tambah Data</a></p>
+
+{% for message in messages %} {% if message %}
+<div class="alert alert-success">{{ message }}</div>
+{% endif %} {% endfor %}
+
+<div class="container">
+  <div class="row">
+    {% for Barang in barangs %}
+    <div class="col-md-4 mb-3">
+      <div class="card h-100">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="{% url 'ubah_brg' Barang.id %}">{{ Barang.kodebrg }}</a>
+          </h5>
+          <p class="card-text">Nama: {{ Barang.namabrg }}</p>
+
+          <p class="card-text">Stok: {{ Barang.stokbrg }}</p>
+          <p class="card-text">Harga: {{ Barang.hargabrg }}</p>
+          <p class="card-text">
+            <img
+              src="{{ Barang.link_gbr }}"
+              alt="{{ Barang.nama }}"
+              class="img-fluid"
+            />
+          </p>
+          <p class="card-text">Jenis: {{ Barang.jenis_id.nama }}</p>
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#hapus-{{Barang.id}}"
+
+          >
+            Hapus
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="hapus-{{Barang.id}}" tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id='exampleModalLabel'>Dihapus?</h1>
+                    <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ Barang.namabrg }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class='btn btn-secondary' data-bs-dismiss='modal'>Batal</button>
+                    <a href="{% url 'hapus_brg' Barang.id %}" class='btn btn-danger'>Yakin</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% endblock %}
